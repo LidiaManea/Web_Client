@@ -1,39 +1,23 @@
-    Manea Lidia-Elena
- 
-  Tema testeaza interactiunea dintre un utilizator si server, prin diferite comenzi si interactiunea cu un REST API:
+Manea Lidia-Elena
 
-1. register: un utilizator se inregistreaza pe server, cu un username si parola. Sunt testate urmatoarele situatii, in functie
-de scenarii: daca inregistrarea a fost facuta cu succes, se merge mai departe; daca username ul a fost luat,  se afiseaza
-un mesaj de eroare, in concordanta.
+The project tests the interaction between a user and server, through different commands and the interaction with a REST API:
 
-2. login: un utilizator se logheaza pe server, cu username ul si parola cu care acesta a fost inregistrat. In functie de
-situatie, apar urmatoarele mesaje: daca username ul si parola sunt corecte, atunci utilizatorul s a logat cu succes;
-daca username ul si/sau parola sunt gresite, atunci apare un mesaj de eroare corespunzator. In cazul loginului cu succes, 
-se salveaza un cookie.
+     register: a user registers on the server with a username and password. The following situations are tested, depending on the scenarios: if the registration was done successfully, it goes on; if the username was taken, an error message is displayed accordingly.
 
-3. enter_library: aceasta comanda se executa doar daca utilizatorul este logat. Daca nu este logat, se afiseaza un mesaj 
-de semnalare al acestui fapt. Daca este logat, se intra in librarie.
+     login: a user logs in to the server with the username and password with which he was registered. Depending on the situation, the following messages appear: if the username and password are correct, then the user has successfully logged in; if the username and/or password are wrong, then a corresponding error message appears. In case of successful login, a cookie is saved.
 
-4. get_books: daca utilizatorul este logat, se afiseaza toate cartile in format json: se afiseaza id ul si titlul cartii respective.
-Daca nu exista carti, se afiseaza lista goala. Daca utilizatorul nu este logat, atunci se afiseaza un mesaj de semnalare.
+     enter_library: this command is executed only if the user is logged in. If he is not logged in, a message indicating this fact is displayed. If he is logged in, he enters the library.
 
-5. get_book: daca utilizatorul este logat, acesta introduce un id pentru o carte pe care acesta doreste sa o vada (se afiseaza
-toate detaliile in format json). Daca utilizatorul nu este logat, se afiseaza un mesaj de semnalare.
+     get_books: if the user is logged in, all books are displayed in json format: the id and title of the respective book are displayed. If there are no books, the empty list is displayed. If the user is not logged in, then a warning message is displayed.
 
-6. add_book: se adauga o carte in biblioteca utilizatorului daca acesta este logat. Se introduc detaliile despre carte si 
-apoi , daca acestea sunt valide, cartea se introduce in biblioteca. Daca utilizatorul nu este logat, se afiseaza un mesaj.
+     get_book: if the user is logged in, he enters an id for a book he wants to see (all details are displayed in json format). If the user is not logged in, a warning message is displayed.
 
-7. delete_book: se sterge o carte cu indexul dat. Daca indexul nu se gaseste, adica cartea nu exista, se afiseaza mesaj corespunzator.
-Altfel, se sterge cartea din biblioteca. 
+     add_book: a book is added to the user's library if he is logged in. The details about the book are entered and then, if they are valid, the book is entered in the library. If the user is not logged in, a message is displayed.
 
-8. logout: utilizatorul da log out daca este logat. Se elibereaza cookie ul si token ul. Daca utilizatorul nu este logat, nu are rost
-sa dea log out.
+     delete_book: deletes a book with the given index. If the index is not found, i.e. the book does not exist, a corresponding message is displayed. Otherwise, the book is deleted from the library.
 
-9. exit: da exit
+     logout: the user logs out if he is logged in. The cookie and the token are issued. If the user is not logged in, there is no point in logging out.
 
-La fiecare pas se verifica urmatoarele erori acolo unde este cazul: daca cookie ul este gol, daca tokenul jwt este gol, daca datele
-introduse sunt invalide (la register,  la login, la add_book daca nu se respecta ok formatul datelor cartii care sa fie adaugata). Totodata,
-inainte de trimiterea unei cereri catre server, se deschide conexiunea catre el, iar dupa trimitere si procesare, aceasta se inchide. Am
-verificat fiecare situatie legata de login in cazul unei erori intamplatoare sau unui comportament nenatural.
-La fiecare pas, dupa citirea datelor din input, se formeaza mesajul si se trimite cerere catre server. Am folosit nlohmann pentru jsonuri,
-fiind usor de folosit si putand manipula datele usor. 
+     exit: yes exit
+
+At each step, the following errors are checked where applicable: if the cookie is empty, if the jwt token is empty, if the entered data is invalid (at register, at login, at add_book if the data format of the book to be added is not respected ok ). At the same time, before sending a request to the server, the connection to it is opened, and after sending and processing, it is closed. We checked every situation related to the login in case of an accidental error or unnatural behavior. At each step, after reading the data from the input, the message is formed and a request is sent to the server. I used nlohmann for jsons, being easy to use and being able to manipulate the data easily.
